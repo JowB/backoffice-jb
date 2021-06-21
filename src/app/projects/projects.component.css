@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+}
+td, th {
+    padding: 20px !important;
+}
+.mat-column-id {
+    width: 50px !important;
+}

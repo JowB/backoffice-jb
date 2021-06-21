@@ -1,0 +1,13 @@
+.project-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+mat-form-field {
+    margin: 20px;
+    width: 500px;
+}
+button {
+    color: white;
+    background-color: #2037AC;
+}

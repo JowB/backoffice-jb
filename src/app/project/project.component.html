@@ -1,0 +1,49 @@
+<h2>Modification du projet : {{project?.name}}</h2>
+<form class="project-form" [formGroup]="projectForm">
+    <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="date" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Miniature</mat-label>
+        <input matInput formControlName="miniature" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Image 1</mat-label>
+        <input matInput formControlName="picture1" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Image 2</mat-label>
+        <input matInput formControlName="picture2" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Image 3</mat-label>
+        <input matInput formControlName="picture3" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Image 4</mat-label>
+        <input matInput formControlName="picture4" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Technologies</mat-label>
+        <input matInput formControlName="technologies" required>
+    </mat-form-field>
+</form>
+
+<button mat-button>Sauvegarder</button>

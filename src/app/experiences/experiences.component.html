@@ -1,0 +1,48 @@
+<h2>Liste des expériences</h2>
+<table mat-table *ngIf="experiences" [dataSource]="experiences" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element" class="mat-column-id"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef> Entreprise </th>
+        <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description.substring(0, 50)}} ... </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="job">
+        <th mat-header-cell *matHeaderCellDef> Emploi </th>
+        <td mat-cell *matCellDef="let element"> {{element.job}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="languages">
+        <th mat-header-cell *matHeaderCellDef> Languages </th>
+        <td mat-cell *matCellDef="let element"> {{element.languages}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="yearStart">
+        <th mat-header-cell *matHeaderCellDef> Date de début </th>
+        <td mat-cell *matCellDef="let element"> {{element.yearStart}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="yearEnd">
+        <th mat-header-cell *matHeaderCellDef> Date de fin </th>
+        <td mat-cell *matCellDef="let element"> {{element.yearEnd}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
