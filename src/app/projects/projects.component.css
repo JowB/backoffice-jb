@@ -1,9 +1,18 @@
-table {
+.btn {
+    color: white;
+    background-color: #2037AC;
+}
+.form-create {
     width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
-td, th {
-    padding: 20px !important;
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
-.mat-column-id {
-    width: 50px !important;
+mat-form-field {
+    margin-right: 50px;
+    width: 400px;
 }

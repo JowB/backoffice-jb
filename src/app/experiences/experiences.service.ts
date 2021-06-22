@@ -14,4 +14,16 @@ export class ExperiencesService {
     getAllExperiences(): Observable<Experience[]> {
         return this.http.get<Experience[]>('/api/experiences');
     }
+
+    getExperienceById(id: number): Observable<Experience> {
+        return this.http.get<Experience>(`/api/experiences/${id}`);
+    }
+
+    upsertExperince(experience: Experience): Observable<Experience> {
+        return this.http.post<Experience>('/api/experiences', experience);
+    }
+
+    deleteExperienceById(id: number): Observable<any> {
+        return this.http.delete<any>(`/api/experiences/${id}`);
+    }
 }

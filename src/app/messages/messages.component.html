@@ -1,0 +1,35 @@
+<h2>Liste des messages reçus</h2>
+
+<table mat-table *ngIf="messages" [dataSource]="messages" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id</th>
+        <td mat-cell *matCellDef="let element" class="mat-column-id"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E-mail</th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef> Message</th>
+        <td mat-cell *matCellDef="let element"> {{element.content}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="deleteMessage(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

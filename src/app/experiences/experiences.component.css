@@ -1,6 +1,31 @@
 table {
     width: 100%;
+    margin-bottom: 50px;
 }
 td, th {
     padding: 20px !important;
+}
+.icon-edit {
+    color: orange;
+}
+.icon-delete {
+    color: red;
+}
+.btn {
+    color: white;
+    background-color: #2037AC;
+}
+.form-create {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+mat-form-field {
+    margin-right: 50px;
+    width: 400px;
 }

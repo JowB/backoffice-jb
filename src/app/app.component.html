@@ -14,13 +14,17 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav mode="side" class="sidenav-nav">
         <div class="nav-list">
-            <button [routerLink]="['/home']" mat-button>Home Page</button>
+            <button [routerLink]="['/home']" mat-button>Accueil</button>
+            <button [routerLink]="['/pages']" mat-button>Pages</button>
+<!--
             <button mat-button>Compétences</button>
+-->
             <button [routerLink]="['/experiences']" mat-button>Expériences</button>
+<!--
             <button mat-button>Parcours</button>
+-->
             <button [routerLink]="['/projects']" mat-button>Projets</button>
-            <button mat-button>Contact</button>
-            <button mat-button>Message</button>
+            <button [routerLink]="['/messages']" mat-button>Message</button>
         </div>
     </mat-sidenav>
 

@@ -3,46 +3,104 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <th mat-header-cell *matHeaderCellDef> Id</th>
         <td mat-cell *matCellDef="let element" class="mat-column-id"> {{element.id}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="company">
-        <th mat-header-cell *matHeaderCellDef> Entreprise </th>
+        <th mat-header-cell *matHeaderCellDef> Entreprise</th>
         <td mat-cell *matCellDef="let element"> {{element.company}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description.substring(0, 50)}} ... </td>
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.description.substring(0, 50)}} ...</td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="job">
-        <th mat-header-cell *matHeaderCellDef> Emploi </th>
+        <th mat-header-cell *matHeaderCellDef> Emploi</th>
         <td mat-cell *matCellDef="let element"> {{element.job}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="languages">
-        <th mat-header-cell *matHeaderCellDef> Languages </th>
+        <th mat-header-cell *matHeaderCellDef> Languages</th>
         <td mat-cell *matCellDef="let element"> {{element.languages}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="yearStart">
-        <th mat-header-cell *matHeaderCellDef> Date de début </th>
+        <th mat-header-cell *matHeaderCellDef> Date de début</th>
         <td mat-cell *matCellDef="let element"> {{element.yearStart}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="yearEnd">
-        <th mat-header-cell *matHeaderCellDef> Date de fin </th>
+        <th mat-header-cell *matHeaderCellDef> Date de fin</th>
         <td mat-cell *matCellDef="let element"> {{element.yearEnd}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button [routerLink]="['/experiences', element.id]">
+                <mat-icon class="icon-edit">edit</mat-icon>
+            </button>
+            <button mat-button (click)="deleteExperience(element.id)">
+                <mat-icon class="icon-delete">delete</mat-icon>
+            </button>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<div class="form-create">
+    <h2>Ajouter une expérience</h2>
+    <form [formGroup]="experienceForm" (ngSubmit)="createExperience()">
+        <div>
+            <mat-form-field>
+                <mat-label>Entreprise</mat-label>
+                <input matInput formControlName="company" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Emploi</mat-label>
+                <input matInput formControlName="job" required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" required></textarea>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Languages</mat-label>
+                <input matInput formControlName="languages" required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Année de début</mat-label>
+                <input matInput formControlName="yearStart" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Année de fin</mat-label>
+                <input matInput formControlName="yearEnd" required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-button class="btn" type="submit" [disabled]="!experienceForm.valid">Sauvegarder</button>
+        </div>
+    </form>
+</div>
