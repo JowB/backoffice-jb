@@ -1,0 +1,14 @@
+<h2>Modification de l'élément du menu : {{menuItem?.item}}</h2>
+<form *ngIf="menuForm" class="project-form" [formGroup]="menuForm" (ngSubmit)="editMenuItem()">
+    <mat-form-field>
+        <mat-label>Elément</mat-label>
+        <input matInput formControlName="item" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Lien</mat-label>
+        <input matInput formControlName="link" required>
+    </mat-form-field>
+
+    <button type="submit" class="btn" mat-button [disabled]="!isDifferent">Sauvegarder</button>
+</form>

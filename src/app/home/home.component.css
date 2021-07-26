@@ -1,0 +1,16 @@
+.text-center {
+    padding-top: 100px;
+}
+.home-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: auto;
+    padding-top: 150px;
+}
+button {
+    color: white;
+    background-color: #2037AC;
+    margin: 5px;
+}

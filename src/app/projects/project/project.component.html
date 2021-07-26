@@ -1,5 +1,5 @@
 <h2>Modification du projet : {{project?.name}}</h2>
-<form class="project-form" [formGroup]="projectForm">
+<form [formGroup]="projectForm" (ngSubmit)="upsertProject()">
     <mat-form-field>
         <mat-label>Nom</mat-label>
         <input matInput formControlName="name" required>
@@ -44,6 +44,6 @@
         <mat-label>Technologies</mat-label>
         <input matInput formControlName="technologies" required>
     </mat-form-field>
-</form>
 
-<button mat-button>Sauvegarder</button>
+    <button class="btn" type="submit" mat-button [disabled]="!isDifferent">Sauvegarder</button>
+</form>

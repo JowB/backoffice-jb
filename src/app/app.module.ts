@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AuthModule} from '@auth0/auth0-angular';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {environment as env} from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -14,8 +14,7 @@ import { HomeComponent } from './home/home.component';
 import {MatTableModule} from '@angular/material/table';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
-import {ProjectService} from './projects/project/project.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -27,6 +26,13 @@ import { ExperienceComponent } from './experiences/experience/experience.compone
 import { PagesComponent } from './pages/pages.component';
 import {PagesService} from './pages/pages.service';
 import { PageComponent } from './pages/page/page.component';
+import { MenuComponent } from './menu/menu.component';
+import {MenuService} from './menu/menu.service';
+import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
+import {ToastrModule} from 'ngx-toastr';
+import { StudiesComponent } from './studies/studies.component';
+import { StudyComponent } from './studies/study/study.component';
+import {StudiesService} from './studies/studies.service';
 
 @NgModule({
     declarations: [
@@ -38,13 +44,20 @@ import { PageComponent } from './pages/page/page.component';
         MessagesComponent,
         ExperienceComponent,
         PagesComponent,
-        PageComponent
+        PageComponent,
+        MenuComponent,
+        MenuEditComponent,
+        StudiesComponent,
+        StudyComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         AuthModule.forRoot({
-            ...env.auth
+            ...env.auth,
+            httpInterceptor: {
+                allowedList: [`${env.serv.serverUrl}/*`],
+            }
         }),
         BrowserAnimationsModule,
         MatSidenavModule,
@@ -56,13 +69,24 @@ import { PageComponent } from './pages/page/page.component';
         HttpClientModule,
         MatFormFieldModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true
+        })
     ],
     providers: [
-        ProjectService,
         ProjectsService,
         MessagesService,
-        PagesService
+        PagesService,
+        MenuService,
+        StudiesService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthHttpInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

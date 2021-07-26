@@ -1,5 +1,5 @@
 <h2>Modification de la page : {{page?.title}}</h2>
-<form class="page-form" [formGroup]="pageForm">
+<form class="page-form" [formGroup]="pageForm" (ngSubmit)="upsertPage()">
     <mat-form-field>
         <mat-label>Titre</mat-label>
         <input matInput formControlName="title" required>
@@ -7,8 +7,13 @@
 
     <mat-form-field>
         <mat-label>Sous-titre</mat-label>
-        <textarea rows="5" matInput formControlName="subTitle" ></textarea>
+        <input matInput formControlName="subTitle">
     </mat-form-field>
-</form>
 
-<button mat-button>Sauvegarder</button>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea rows="5" matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <button class="btn" type="submit" mat-button [disabled]="!isDifferent">Sauvegarder</button>
+</form>

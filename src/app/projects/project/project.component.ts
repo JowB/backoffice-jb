@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {ProjectService} from './project.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Project} from '../../model/project';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProjectsService} from '../projects.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-project',
@@ -14,18 +15,22 @@ export class ProjectComponent implements OnInit {
     projectId: number | undefined;
     project: Project | undefined;
     projectForm: FormGroup;
+    isPatch = false;
+    isDifferent = false;
 
-    constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+    constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectsService,
+                private toastr: ToastrService) {
         this.projectForm = new FormGroup({
-            description: new FormControl(''),
-            date: new FormControl(''),
-            miniature: new FormControl(''),
-            name: new FormControl(''),
-            picture1: new FormControl(''),
-            picture2: new FormControl(''),
-            picture3: new FormControl(''),
-            picture4: new FormControl(''),
-            technologies: new FormControl(''),
+            id: new FormControl(null),
+            description: new FormControl(null, Validators.required),
+            date: new FormControl(null, Validators.required),
+            miniature: new FormControl(null, Validators.required),
+            name: new FormControl(null, Validators.required),
+            picture1: new FormControl(null, Validators.required),
+            picture2: new FormControl(null, Validators.required),
+            picture3: new FormControl(null, Validators.required),
+            picture4: new FormControl(null, Validators.required),
+            technologies: new FormControl(null, Validators.required),
         });
     }
 
@@ -35,26 +40,51 @@ export class ProjectComponent implements OnInit {
         if (this.projectId) {
             this.getProject(this.projectId);
         }
+
+        this.projectForm.valueChanges
+            .subscribe(() => {
+                if (this.isPatch) {
+                    this.isDifferent = true;
+                }
+            });
     }
 
     getProject(id: number): void {
-        this.projectService.getProductById(id)
+        this.projectService.getProjectById(id)
             .subscribe(project => {
                 this.project = project;
                 this.updateFormValue(this.project);
+            }, () => {
+                this.toastr.error('Erreur pendant la récupération du projet');
             });
     }
 
     updateFormValue(project: Project): void {
-        this.projectForm.controls.description.setValue(project.description);
-        this.projectForm.controls.date.setValue(project.date);
-        this.projectForm.controls.miniature.setValue(project.miniature);
-        this.projectForm.controls.name.setValue(project.name);
-        this.projectForm.controls.picture1.setValue(project.picture1);
-        this.projectForm.controls.picture2.setValue(project.picture2);
-        this.projectForm.controls.picture3.setValue(project.picture3);
-        this.projectForm.controls.picture4.setValue(project.picture4);
-        this.projectForm.controls.technologies.setValue(project.technologies);
+        this.projectForm.patchValue({
+            id: project.id,
+            description: project.description,
+            date: project.date,
+            miniature: project.miniature,
+            name: project.name,
+            picture1: project.picture1,
+            picture2: project.picture2,
+            picture3: project.picture3,
+            picture4: project.picture4,
+            technologies: project.technologies,
+        });
+
+        this.isPatch = true;
     }
 
+    upsertProject(): void {
+        this.projectService.upsertProject(this.projectForm.value)
+            .subscribe(data => {
+                this.toastr.success('Modification du projet réussie');
+                setTimeout(() => {
+                    this.router.navigate(['/projets']);
+                }, 3000);
+            }, () => {
+                this.toastr.error('Erreur pendant la modification du projet');
+            });
+    }
 }

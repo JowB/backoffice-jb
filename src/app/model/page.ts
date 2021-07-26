@@ -1,5 +1,6 @@
 export interface Page {
-    id: number;
+    id?: number;
     title: string;
-    subTitle: string;
+    subTitle?: string;
+    description?: string;
 }

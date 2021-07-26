@@ -1,31 +1,29 @@
 <h2>Modification de l'expérience : {{experience?.company}}</h2>
 <form [formGroup]="experienceForm" (ngSubmit)="saveExperience()">
-    <div class="experience-form">
-        <mat-form-field>
-            <mat-label>Entreprise</mat-label>
-            <input matInput formControlName="company" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea rows="6" matInput formControlName="description" required></textarea>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Emploi</mat-label>
-            <input matInput formControlName="job" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Languages</mat-label>
-            <input matInput formControlName="languages" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Année de début</mat-label>
-            <input matInput formControlName="yearStart" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Année de fin</mat-label>
-            <input matInput formControlName="yearEnd" required>
-        </mat-form-field>
-    </div>
-    <button mat-button [disabled]="!experienceForm.valid">Sauvegarder</button>
+    <mat-form-field>
+        <mat-label>Entreprise</mat-label>
+        <input matInput formControlName="company" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea rows="6" matInput formControlName="description" required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Emploi</mat-label>
+        <input matInput formControlName="job" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Languages</mat-label>
+        <input matInput formControlName="languages" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Année de début</mat-label>
+        <input matInput formControlName="yearStart" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Année de fin</mat-label>
+        <input matInput formControlName="yearEnd" required>
+    </mat-form-field>
+    <button class="btn" mat-button type="submit" [disabled]="!isDifferent">Sauvegarder</button>
 </form>
 

@@ -1,71 +1,71 @@
 <h2>Liste des projets</h2>
 <table mat-table *ngIf="projects" [dataSource]="projects" class="mat-elevation-z8">
 
-    <!-- Position Column -->
+    <!-- Id Column -->
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
         <td mat-cell *matCellDef="let element" class="mat-column-id"> {{element.id}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Date Column -->
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let element"> {{element.date}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Description Column -->
     <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef> Description </th>
         <td mat-cell *matCellDef="let element"> {{element.description.substring(0, 50)}} ... </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Miniature Column -->
     <ng-container matColumnDef="miniature">
         <th mat-header-cell *matHeaderCellDef> Miniature </th>
         <td mat-cell *matCellDef="let element"> {{element.miniature}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nom </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Picture 1 Column -->
     <ng-container matColumnDef="picture1">
         <th mat-header-cell *matHeaderCellDef> Image 1 </th>
         <td mat-cell *matCellDef="let element"> {{element.picture1}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Picture 2 Column -->
     <ng-container matColumnDef="picture2">
         <th mat-header-cell *matHeaderCellDef> Image 2 </th>
         <td mat-cell *matCellDef="let element"> {{element.picture2}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Picture 3 Column -->
     <ng-container matColumnDef="picture3">
         <th mat-header-cell *matHeaderCellDef> Image 3 </th>
         <td mat-cell *matCellDef="let element"> {{element.picture3}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Picture 4 Column -->
     <ng-container matColumnDef="picture4">
         <th mat-header-cell *matHeaderCellDef> Image 4 </th>
         <td mat-cell *matCellDef="let element"> {{element.picture4}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Technologies Column -->
     <ng-container matColumnDef="technologies">
         <th mat-header-cell *matHeaderCellDef> Technologies </th>
         <td mat-cell *matCellDef="let element"> {{element.technologies}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Actions Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions</th>
         <td mat-cell *matCellDef="let element">
-            <button mat-button [routerLink]="['/projects', element.id]">
+            <button mat-button [routerLink]="['/projets', element.id]">
                 <mat-icon class="icon-edit">edit</mat-icon>
             </button>
             <button mat-button (click)="deleteProject(element.id)">

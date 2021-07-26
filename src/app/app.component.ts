@@ -12,5 +12,4 @@ export class AppComponent {
     constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {
     }
 
-    title = 'backoffice';
 }

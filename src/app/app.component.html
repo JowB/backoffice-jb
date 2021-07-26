@@ -4,26 +4,22 @@
     <h1 class="example-app-name">Menu</h1>
     <span class="spacer"></span>
     <button *ngIf="auth.isAuthenticated$ | async; else loggedOut" class="btn btn-danger" (click)="auth.logout({ returnTo: document.location.origin })">
-        Log out
+        Déconnexion
     </button>
     <ng-template #loggedOut>
-        <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Log in</button>
+        <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Connexion</button>
     </ng-template>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav mode="side" class="sidenav-nav">
         <div class="nav-list">
-            <button [routerLink]="['/home']" mat-button>Accueil</button>
+            <button [routerLink]="['/accueil']" mat-button>Accueil</button>
+            <button [routerLink]="['/menu']" mat-button>Menu</button>
             <button [routerLink]="['/pages']" mat-button>Pages</button>
-<!--
-            <button mat-button>Compétences</button>
--->
             <button [routerLink]="['/experiences']" mat-button>Expériences</button>
-<!--
-            <button mat-button>Parcours</button>
--->
-            <button [routerLink]="['/projects']" mat-button>Projets</button>
+            <button [routerLink]="['/parcours']" mat-button>Parcours</button>
+            <button [routerLink]="['/projets']" mat-button>Projets</button>
             <button [routerLink]="['/messages']" mat-button>Message</button>
         </div>
     </mat-sidenav>

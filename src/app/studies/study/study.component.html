@@ -1,0 +1,24 @@
+<h2>Modification de l'étude : {{study?.diploma}}</h2>
+<form *ngIf="studyForm" class="project-form" [formGroup]="studyForm" (ngSubmit)="editStudy()">
+    <mat-form-field>
+        <mat-label>Diplome</mat-label>
+        <input matInput formControlName="diploma" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Second diplome</mat-label>
+        <input matInput formControlName="secondDiploma" >
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Années</mat-label>
+        <input matInput formControlName="year" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Logo</mat-label>
+        <input matInput formControlName="logo" required>
+    </mat-form-field>
+
+    <button type="submit" class="btn" mat-button [disabled]="!isDifferent">Sauvegarder</button>
+</form>

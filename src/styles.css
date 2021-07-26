@@ -22,7 +22,7 @@ td, th {
     color: red;
 }
 .btn {
-    color: white;
+    color: white !important;
     background-color: #2037AC;
 }
 .form-create {
