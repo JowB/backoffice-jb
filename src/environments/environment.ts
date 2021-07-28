@@ -13,7 +13,7 @@ export const environment = {
     audience
   },
   serv: {
-    serverUrl
+    serverUrl: 'https://api-jb.herokuapp.com'
   }
 };
 
